@@ -19,6 +19,10 @@ from rrdashapp import views
 # from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView, LogoutView
 
+#for uploading images
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
@@ -29,4 +33,4 @@ urlpatterns = [
     path('restaurant/sign-up/', views.restaurant_sign_up, name="restaurant-sign-up"),
     path('restaurant/', views.restaurant_home, name='restaurant-home'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

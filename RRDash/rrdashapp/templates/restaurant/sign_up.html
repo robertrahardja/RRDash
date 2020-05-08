@@ -12,6 +12,11 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-    Restaurant Sign Up
+    <form method="POST" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{user_form}}
+    {{restaurant_form}}
+    <button type="submit">Sign up</button>
+    </form>
 </body>
 </html>
