@@ -1,1 +1,1 @@
-web: gunicorn foodtasker.wsgi --log-file -
+web: gunicorn RRDash.wsgi --log-file -
