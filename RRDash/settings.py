@@ -26,7 +26,7 @@ SECRET_KEY = '$xng@qwat0bzwb&sd+-o(k-^=q#h4anf!*z!buzff&+my+bvk6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysterious-retreat-35526.herokuapp.com']
 
 
 # Application definition
