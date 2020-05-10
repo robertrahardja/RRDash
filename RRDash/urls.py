@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rrdashapp import views
 # from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView, LogoutView
 
-#for uploading images
+# for uploading images
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -27,10 +27,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     # path('restaurant/sign-in', auth_views.login, {'template_name': 'restaurant/sign_in.html'}, name='restaurant-sign-in'),
-    path('restaurant/sign-in/', LoginView.as_view(template_name='restaurant/sign_in.html'), name="restaurant-sign-in"),
+    path('restaurant/sign-in/', LoginView.as_view(template_name='restaurant/sign_in.html'),
+         name="restaurant-sign-in"),
     # path('restaurant/sign-out', auth_views.logout, {'next_page': '/'}, name='restaurant-sign-out'),
-    path('restaurant/sign-out/', LogoutView.as_view(next_page='/'), name="restaurant-sign-out"),
-    path('restaurant/sign-up/', views.restaurant_sign_up, name="restaurant-sign-up"),
+    path('restaurant/sign-out/', LogoutView.as_view(next_page='/'),
+         name="restaurant-sign-out"),
+    path('restaurant/sign-up/', views.restaurant_sign_up,
+         name="restaurant-sign-up"),
     path('restaurant/', views.restaurant_home, name='restaurant-home'),
+    # url(r'^api/social', include('rest_framework_social_oauth2.urls')),
+    path('api/social/', include('rest_framework_social_oauth2.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
