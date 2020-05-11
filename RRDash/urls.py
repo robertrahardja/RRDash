@@ -37,5 +37,8 @@ urlpatterns = [
     path('restaurant/', views.restaurant_home, name='restaurant-home'),
     # url(r'^api/social', include('rest_framework_social_oauth2.urls')),
     path('api/social/', include('rest_framework_social_oauth2.urls')),
+    path('restaurant/account', views.restaurant_account, name='restaurant-account'),
+    path('restaurant/meal', views.restaurant_meal, name='restaurant-meal'),
+    path('restaurant/order', views.restaurant_order, name='restaurant-order'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
