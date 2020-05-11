@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from rrdashapp.forms import UserForm, RestaurantForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from rrdashapp.forms import UserForm, RestaurantForm
+
 
 # Create your views here.
 

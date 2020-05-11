@@ -1,4 +1,5 @@
 {% extends 'base_signup.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
 {% block title %}
 Sign in
 {% endblock title %}
@@ -8,10 +9,16 @@ Restaurant - Signup
 {% endblock heading %}
 
 {% block content %}
- <form method="POST" enctype='multipart/form-data'>
+
+{% load crispy_forms_tags %}
+ 
+<form method="POST" enctype='multipart/form-data'>
+
     {% csrf_token %}
-    {{user_form}}
-    {{restaurant_form}}
+    
+    {{user_form|crispy}}
+    {{restaurant_form|crispy}}
     <button type="submit">Sign up</button>
+
     </form>
 {% endblock content %}
