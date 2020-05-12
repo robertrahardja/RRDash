@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from rrdashapp.models import Restaurant
+from rrdashapp.models import Restaurant, Meal
 
 
 class UserForm(forms.ModelForm):
@@ -27,3 +27,8 @@ class RestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
         fields = ("name", "phone", "address", "logo")
+
+class MealForm(forms.ModelForm):
+    class Meta:
+        model = Meal
+        exclude = ("restaurant",)
