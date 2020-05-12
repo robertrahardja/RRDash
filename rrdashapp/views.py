@@ -40,6 +40,9 @@ def restaurant_account(request):
 def restaurant_meal(request):
     return render(request, 'restaurant/meal.html', {})
 
+@login_required(login_url='sign-in/')
+def restaurant_add_meal(request):
+    return render(request, 'restaurant/add_meal.html', {})
 
 @login_required(login_url='sign-in/')
 def restaurant_order(request):

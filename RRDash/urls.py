@@ -39,6 +39,8 @@ urlpatterns = [
     path('api/social/', include('rest_framework_social_oauth2.urls')),
     path('restaurant/account', views.restaurant_account, name='restaurant-account'),
     path('restaurant/meal', views.restaurant_meal, name='restaurant-meal'),
+    path('restaurant/meal/add/', views.restaurant_add_meal, name='restaurant-add-meal'),
+
     path('restaurant/order', views.restaurant_order, name='restaurant-order'),
     path('restaurant/report', views.restaurant_report, name='restaurant-report'),
 
