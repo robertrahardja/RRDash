@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from rrdashapp.forms import UserForm, RestaurantForm, UserFormForEdit, MealForm
+from rrdashapp.models import Meal
 
 
 # Create your views here.
@@ -38,7 +39,8 @@ def restaurant_account(request):
 
 @login_required(login_url='sign-in/')
 def restaurant_meal(request):
-    return render(request, 'restaurant/meal.html', {})
+    meals = Meal.objects.filter(restaurant = request.user.restaurant).order_by("-id")
+    return render(request, 'restaurant/meal.html', {"meals":meals})
 
 @login_required(login_url='sign-in/')
 def restaurant_add_meal(request):
