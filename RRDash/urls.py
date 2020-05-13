@@ -40,10 +40,12 @@ urlpatterns = [
     path('restaurant/account', views.restaurant_account, name='restaurant-account'),
     path('restaurant/meal', views.restaurant_meal, name='restaurant-meal'),
     path('restaurant/meal/add/', views.restaurant_add_meal, name='restaurant-add-meal'),
-    path('restaurant/meal/edit/(?P<meal_id>\d+))/$', views.restaurant_edit_meal, name='restaurant-edit-meal'),
+    path('restaurant/meal/edit/(?P<meal_id>\d+))/', views.restaurant_edit_meal, name='restaurant-edit-meal'),
 
     path('restaurant/order', views.restaurant_order, name='restaurant-order'),
     path('restaurant/report', views.restaurant_report, name='restaurant-report'),
     path('api/customer/restaurants/', apis.customer_get_restaurants)
-
+    path('api/customer/meals/(?P<restaurant_id>\d+))/', apis.customer_get_meals)
+    path('api/customer/order/add', apis.customer_add_order)
+    path('api/customer/restaurants/', apis.customer_get_latest_order)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
