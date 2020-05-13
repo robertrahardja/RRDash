@@ -34,6 +34,15 @@
                         <td>{{order.total}}</td>
                         <td>{{order.get_status_display}}</td>
                         <td>
+                            {% if order.status == 1 %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <input name="id" value="{{order.id}}" hidden>
+                                <button class="btn btn-success">Ready</button>
+                            </form>
+                            {% endif %}
+                            
+                        </td>
                     </tr>
                     {% endfor %}
                     
