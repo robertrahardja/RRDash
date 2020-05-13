@@ -54,7 +54,7 @@ class Order(models.Model):
     ONTHEWAY = 3
     DELIVERED = 4
 
-    STATUS_CHOICES =(
+    STATUS_CHOICES = (
         (COOKING, "Cooking"),
         (READY, "Ready"),
         (ONTHEWAY, "On the way"),
@@ -64,11 +64,12 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
-    address = models.CharField(max_length = 500)
-    total = models.IntegerField
-    status = models.IntegerField(choices= STATUS_CHOICES)
+    address = models.CharField(max_length=500)
+    total = models.IntegerField(default=0)
+    status = models.IntegerField(choices = STATUS_CHOICES)
     created_at = models.DateTimeField(default = timezone.now)
-    picked_at = models.DateTimeField(blank=True, null=True)
+    picked_at = models.DateTimeField(blank = True, null = True)
+
     def __str__(self):
         return str(self.id)
 
@@ -77,8 +78,6 @@ class OrderDetails(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     sub_total = models.IntegerField()
-
-    
 
     def __str__(self):
         return str(self.id)
