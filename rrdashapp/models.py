@@ -66,7 +66,7 @@ class Order(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     address = models.CharField(max_length=500)
     total = models.IntegerField(default=0)
-    status = models.IntegerField(choices = STATUS_CHOICES)
+    status = models.IntegerField(choices = STATUS_CHOICES, default=COOKING)
     created_at = models.DateTimeField(default = timezone.now)
     picked_at = models.DateTimeField(blank = True, null = True)
 

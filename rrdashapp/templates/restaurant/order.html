@@ -19,6 +19,7 @@
                         <th>Driver</th>
                         <th>Total</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +32,8 @@
                         <td>{{order.customer}}</td>
                         <td>{{order.driver}}</td>
                         <td>{{order.total}}</td>
-                        <td>{{order.status}}</td>
+                        <td>{{order.get_status_display}}</td>
+                        <td>
                     </tr>
                     {% endfor %}
                     
