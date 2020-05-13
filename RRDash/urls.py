@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rrdashapp import views
+from rrdashapp import views, apis
 # from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -44,5 +44,6 @@ urlpatterns = [
 
     path('restaurant/order', views.restaurant_order, name='restaurant-order'),
     path('restaurant/report', views.restaurant_report, name='restaurant-report'),
+    path('api/customer/restaurants/', apis.customer_get_restaurants)
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
