@@ -7,7 +7,7 @@ from django.utils import timezone
 from oauth2_provider.models import AccessToken
 
 from rrdashapp.models import Restaurant, Meal, Order, OrderDetails
-from rrdashapp.serializers import RestaurantSerializer, MealSerializer
+from rrdashapp.serializers import RestaurantSerializer, MealSerializer, OrderSerializer
 
 def customer_get_restaurants(request):
     restaurants = RestaurantSerializer(
@@ -91,7 +91,10 @@ def customer_add_order(request):
 
 
 def customer_get_latest_order(request):
-    return JsonResponse({})
+    access_token = AccessToken.objects.get(token=request.GET.get('access_token'), expires__gt = timezone.now())
+    customer = access_token.user.customer
+    order = OrderSerializer(Order.objects.filter(customer = customer).last()).data
+    return JsonResponse({"order":order})
 
 # def restaurant_order_notification():
 def restaurant_order_notification(request, last_request_time):
