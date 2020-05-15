@@ -100,3 +100,18 @@ def customer_get_latest_order(request):
 def restaurant_order_notification(request, last_request_time):
     notification = Order.objects.filter(restaurant=request.user.restaurant, created_at__gt=last_request_time).count()
     return JsonResponse({"notification":notification})
+
+def driver_get_ready_orders(request):
+    return JsonResponse({})
+
+def driver_pick_order(request):
+    return JsonResponse({})
+
+def driver_get_latest_order(request):
+    return JsonResponse({})
+
+def driver_complete_order(request):
+    return JsonResponse({})
+
+def driver_get_revenue(request):
+    return JsonResponse({})
