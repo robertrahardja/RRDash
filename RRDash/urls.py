@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import datetime
 from django.contrib import admin
 from django.urls import path, include
 from rrdashapp import views, apis
@@ -39,11 +40,17 @@ urlpatterns = [
     path('api/social/', include('rest_framework_social_oauth2.urls')),
     path('restaurant/account', views.restaurant_account, name='restaurant-account'),
     path('restaurant/meal', views.restaurant_meal, name='restaurant-meal'),
-    path('restaurant/meal/add/', views.restaurant_add_meal, name='restaurant-add-meal'),
-    path('restaurant/meal/edit/<int:meal_id>', views.restaurant_edit_meal, name='restaurant-edit-meal'),
+    path('restaurant/meal/add/', views.restaurant_add_meal,
+         name='restaurant-add-meal'),
 
     path('restaurant/order', views.restaurant_order, name='restaurant-order'),
     path('restaurant/report', views.restaurant_report, name='restaurant-report'),
+
+    path('restaurant/meal/edit/<int:meal_id>',
+         views.restaurant_edit_meal, name='restaurant-edit-meal'),
+
+    path('restaurant/api/restaurant/order/notification/<last_request_time>/',
+         apis.restaurant_order_notification, name='restaurant-report'),
     path('api/customer/restaurants/', apis.customer_get_restaurants),
     path('api/customer/meals/<int:restaurant_id>', apis.customer_get_meals),
     path('api/customer/order/add', apis.customer_add_order),

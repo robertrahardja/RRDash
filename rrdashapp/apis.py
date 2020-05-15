@@ -1,8 +1,8 @@
+import json
 from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
-import json
 
 from oauth2_provider.models import AccessToken
 
@@ -20,6 +20,7 @@ def customer_get_restaurants(request):
 
 def customer_get_meals(request, restaurant_id):
     print (restaurant_id)
+    print(hi)
     meals = MealSerializer(
         Meal.objects.filter(restaurant_id=restaurant_id).order_by("-id"),
         many=True,
@@ -69,11 +70,11 @@ def customer_add_order(request):
         if len(order_details) > 0:
             # Step 1 - Create an Order
             order = Order.objects.create(
-                customer = customer,
-                restaurant_id = request.POST["restaurant_id"],
-                total = order_total,
-                status = Order.COOKING,
-                address = request.POST["address"]
+                customer=customer,
+                restaurant_id=request.POST["restaurant_id"],
+                total=order_total,
+                status=Order.COOKING,
+                address=request.POST["address"]
             )
 
             # Step 2 - Create Order details
@@ -91,3 +92,8 @@ def customer_add_order(request):
 
 def customer_get_latest_order(request):
     return JsonResponse({})
+
+# def restaurant_order_notification():
+def restaurant_order_notification(request, last_request_time):
+    notification = Order.objects.filter(restaurant=request.user.restaurant, created_at__gt=last_request_time).count()
+    return JsonResponse({"notification":notification})
