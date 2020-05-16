@@ -36,9 +36,9 @@ class Driver(models.Model):
     address = models.CharField(max_length=500, blank=True)
     location = models.CharField(max_length=500, blank=True)
 
-
     def __str__(self):
         return self.user.get_full_name()
+
 
 class Meal(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
@@ -49,7 +49,8 @@ class Meal(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Order(models.Model):
     COOKING = 1
     READY = 2
@@ -65,22 +66,24 @@ class Order(models.Model):
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, blank=True, null=True)
+    driver = models.ForeignKey(
+        Driver, on_delete=models.CASCADE, blank=True, null=True)
     address = models.CharField(max_length=500)
     total = models.IntegerField(default=0)
-    status = models.IntegerField(choices = STATUS_CHOICES, default=COOKING)
-    created_at = models.DateTimeField(default = timezone.now)
-    picked_at = models.DateTimeField(blank = True, null = True)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=COOKING)
+    created_at = models.DateTimeField(default=timezone.now)
+    picked_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return str(self.id)
 
+
 class OrderDetails(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_details")
-    meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name="order_details", null=False)
+    meal = models.ForeignKey(Meal, on_delete=models.CASCADE, null=False)
     quantity = models.IntegerField()
     sub_total = models.IntegerField()
 
     def __str__(self):
         return str(self.id)
-    
