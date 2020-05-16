@@ -58,7 +58,7 @@ urlpatterns = [
     
     path('api/driver/orders/ready', apis.driver_get_ready_orders),
     path('api/driver/order/pick', apis.driver_pick_order),
-#     path('api/driver/order/latest', apis.driver_get_latest_order),
+    path('api/driver/order/latest', apis.driver_get_latest_order),
 #     path('api/driver/orders/complete', apis.driver_complete_orders),
 #     path('api/driver/revenue', apis.driver_get_revenue),
 
