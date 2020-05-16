@@ -60,7 +60,7 @@ urlpatterns = [
     path('api/driver/order/pick', apis.driver_pick_order),
     path('api/driver/order/latest', apis.driver_get_latest_order),
     path('api/driver/order/complete', apis.driver_complete_order),
-#     path('api/driver/revenue', apis.driver_get_revenue),
+    path('api/driver/revenue', apis.driver_get_revenue),
 
 
 
