@@ -26,8 +26,8 @@ def customer_get_restaurants(request):
 
 
 def customer_get_meals(request, restaurant_id):
-    print(restaurant_id)
-    print(hi)
+    # print(restaurant_id)
+    # print(hi)
     meals = MealSerializer(
         Meal.objects.filter(restaurant_id=restaurant_id).order_by("-id"),
         many=True,

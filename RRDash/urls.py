@@ -53,7 +53,7 @@ urlpatterns = [
          apis.restaurant_order_notification, name='restaurant-report'),
     path('api/customer/restaurants/', apis.customer_get_restaurants),
     path('api/customer/meals/<int:restaurant_id>', apis.customer_get_meals),
-    path('api/customer/order/add', apis.customer_add_order),
+    path('api/customer/order/add/', apis.customer_add_order),
     path('api/customer/restaurants/latest', apis.customer_get_latest_order),
     path('api/customer/driver/location', apis.customer_driver_location),
     
